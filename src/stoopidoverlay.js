@@ -61,6 +61,9 @@ class StoopidOverlay {
     var AnimationStep = 10; //pixels
     var AnimationInterval = 50; //milliseconds
 
+    /* Stolen from:
+     * https://stackoverflow.com/questions/5461575/animated-show-without-jquery
+     */
     function Animate(element, targetHeight) {
       var curHeight = element.clientHeight;
       if (curHeight >= targetHeight)
