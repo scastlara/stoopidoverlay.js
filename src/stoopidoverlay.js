@@ -5,7 +5,7 @@ class StoopidOverlay {
   /**
    * Takes arguments:
    *    container: 'id'
-   *    closeContainer: 'id'
+   *    closeicon: 'x'
    *    width: "x%"
    *    height: "y%"
    *    hidden: bool
@@ -17,7 +17,7 @@ class StoopidOverlay {
    */
   constructor(options) {
     var defaults = {
-      container: 'overlay', closeContainer: 'close-overlay',
+      container: 'overlay', closeContainer: 'x',
       width: '70%', height: '60%',
       hidden: true, align: "center",
       background: 'rgb(236, 236, 236)', padding: '5%',
@@ -29,7 +29,11 @@ class StoopidOverlay {
       }
     }
     this.container = document.getElementById(options.container);
+
+    // Add HTML close div
+    this.container.innerHTML('<div id="close-overlay">x</div>');
     this.close     = document.getElementById(options.closeContainer);
+
     // Check if containers exist
     if (this.container == null) {
       throw("Error: Container ${this.container} does not exist")
