@@ -62,7 +62,7 @@ class StoopidOverlay {
   showOverlay() {
     //this.container.style.display = 'block';
     this.close.style.display = 'block';
-    var AnimationStep = 10; //pixels
+    var AnimationStep = 5; //pixels
     var AnimationInterval = 50; //milliseconds
 
     /* Stolen from:
@@ -70,9 +70,12 @@ class StoopidOverlay {
      */
     function Animate(element, targetHeight) {
       var curHeight = element.clientHeight;
+      console.log("c: " + curHeight);
+      console.log("t: " + targetHeight);
       if (curHeight >= targetHeight)
       return true;
       element.style.height = (curHeight + AnimationStep) + "px";
+      console.log("p: " + element.style.height);
       window.setTimeout(function() {
         Animate(element, targetHeight);
       }, AnimationInterval);
@@ -80,7 +83,7 @@ class StoopidOverlay {
     };
 
     this.container.style.display = "block";
-    var height = this.container.scrollHeight;
+    var height = this.container.clientHeight;
     this.container.style.height = "0px";
     Animate(this.container, height);
   }
