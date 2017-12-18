@@ -102,6 +102,7 @@ class StoopidOverlay {
     that.container.style.width = options.width;
     that.container.style.position = "fixed";
     that.container.style.zIndex = "80";
+    that.container.style.boxShadow = "0px 0px 180px 120px rgba(0,0,0,0.75)";
 
     // Compute left and top offset
     var width  = parseInt(options.width.replace('%', ''));
