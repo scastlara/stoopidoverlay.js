@@ -15,6 +15,7 @@ class StoopidOverlay {
    *    closeBackground: 'blue'
    *
    */
+
   constructor(options) {
     var defaults = {
       container: 'overlay', closeIcon: 'x',
