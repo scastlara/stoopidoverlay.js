@@ -13,6 +13,7 @@ class StoopidOverlay {
    *    background: 'red'
    *    padding: '5%'
    *    closeBackground: 'blue'
+   *    openContainer: 'id'
    *
    */
 
@@ -22,7 +23,8 @@ class StoopidOverlay {
       width: '70%', height: '60%',
       hidden: true, align: "center",
       background: 'rgb(236, 236, 236)', padding: '5%',
-      closeBackground : 'rgb(222, 242, 255)', scroll: true
+      closeBackground : 'rgb(222, 242, 255)', scroll: true,
+      openContainer: false
     };
     for (var key in defaults) {
       if (!options.hasOwnProperty(key)) {
@@ -42,13 +44,21 @@ class StoopidOverlay {
     if (this.close == null) {
       throw("Error: Container ${this.close} does not exist: (default: id='close-overlay')")
     }
+
+    // Reference to this
+    var that = this;
+
     // Initialize as hidden if necessary
     if (options.hidden) {
       this.hideOverlay();
     }
+    if (options.openContainer) {
+      var openCont = document.getElementById(options.openContainer);
+      openCont.onclick=function() {that.showOverlay();}
+      openCont.onmouseover=function() {this.style.cursor = "pointer";}
+      openCont.onmouseleave=function() {this.style.cursor = "default";}
+    }
 
-    // Reference to this
-    var that = this;
 
     // Initialize css
     this.initCss(that, options);
