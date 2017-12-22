@@ -31,7 +31,7 @@ myOverlay.hideOverlay();
   <body>
     This is my content. Click <a id="btn">Here</a>
     <div id="overlay">Hidden teehee</div>
-    <script src="https://cdn.rawgit.com/scastlara/stoopidoverlay.js/dffcd890/src/stoopidoverlay.js"></script>
+    <script src="https://rawgit.com/scastlara/stoopidoverlay.js/master/src/stoopidoverlay.js"></script>
     <script>
       var options = {
         container: 'overlay',
