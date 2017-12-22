@@ -35,9 +35,9 @@ myOverlay.hideOverlay();
     <script>
       var options = {
         container: 'overlay',
+        openContainer: 'btn'
       }
       var myOverlay = new StoopidOverlay(options);
-      document.getElementById('btn').onclick=function(){ myOverlay.showOverlay() }
     </script>
   </body>
 </html>
