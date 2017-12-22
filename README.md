@@ -7,7 +7,6 @@ Stoopidly simple overlay in pure JavaScript. No bullshit overlay I made for myse
 ```js
 var options = {
   container: 'overlay',
-  closeContainer: 'close-overlay',
   width: '70%',
   height: '60%',
   align: "center",
@@ -31,13 +30,11 @@ myOverlay.hideOverlay();
 <html>
   <body>
     This is my content. Click <a id="btn">Here</a>
-    <div id="close-overlay">x</div>
     <div id="overlay">Hidden teehee</div>
     <script src="https://cdn.rawgit.com/scastlara/stoopidoverlay.js/dffcd890/src/stoopidoverlay.js"></script>
     <script>
       var options = {
         container: 'overlay',
-        closeContainer: 'close-overlay',
       }
       var myOverlay = new StoopidOverlay(options);
       document.getElementById('btn').onclick=function(){ myOverlay.showOverlay() }
