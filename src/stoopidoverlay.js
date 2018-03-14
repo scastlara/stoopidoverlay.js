@@ -22,7 +22,7 @@ class StoopidOverlay {
       container: 'overlay', closeIcon: 'x',
       width: '70%', height: '60%',
       hidden: true, align: "center",
-      background: 'rgb(236, 236, 236)', padding: '5%',
+      background: 'rgb(236, 236, 236)', padding: '2%',
       closeBackground : 'rgb(222, 242, 255)', scroll: true,
       openContainer: false
     };
@@ -34,15 +34,20 @@ class StoopidOverlay {
     this.container = document.getElementById(options.container);
 
     // Add HTML close div
-    this.container.innerHTML = '<div id="close-overlay">' + options.closeIcon + '</div>' + this.container.innerHTML;
-    this.close     = document.getElementById("close-overlay");
+    this.container.innerHTML = '<div class="close-overlay '
+                                + options.container  
+                                + '">'  
+                                + options.closeIcon 
+                                + '</div>' 
+                                + this.container.innerHTML;
+    this.close     = document.getElementsByClassName("close-overlay " + options.container)[0];
 
     // Check if containers exist
     if (this.container == null) {
       throw("Error: Container ${this.container} does not exist")
     }
     if (this.close == null) {
-      throw("Error: Container ${this.close} does not exist: (default: id='close-overlay')")
+      throw("Error: Container ${this.close} does not exist: (default: class='close-overlay')")
     }
 
     // Reference to this
@@ -73,8 +78,8 @@ class StoopidOverlay {
   showOverlay() {
     //this.container.style.display = 'block';
     this.close.style.display = 'block';
-    var AnimationStep = 5; //pixels
-    var AnimationInterval = 50; //milliseconds
+    var AnimationStep = 10; //pixels
+    var AnimationInterval = 5; //milliseconds
 
     /* Stolen from:
      * https://stackoverflow.com/questions/5461575/animated-show-without-jquery
@@ -86,7 +91,6 @@ class StoopidOverlay {
       if (curHeight >= targetHeight)
       return true;
       element.style.height = (curHeight + AnimationStep) + "px";
-      console.log("p: " + element.style.height);
       window.setTimeout(function() {
         Animate(element, targetHeight);
       }, AnimationInterval);
@@ -119,6 +123,7 @@ class StoopidOverlay {
     that.container.style.boxShadow = "0px 0px 180px 120px rgba(0,0,0,0.75)";
 
     // Compute left and top offset
+
     var width  = parseInt(options.width.replace('%', ''));
     var height = parseInt(options.height.replace('%', ''));
     var pad    = parseInt(options.padding.replace('%', ''));
@@ -131,7 +136,7 @@ class StoopidOverlay {
     }
 
     if (options.align == "center") {
-      var offset = ((100 - width)/2) - pad;
+      var offset = ((100 - width)/2);
     } else if (options.align == "left") {
       var offset = (100 - width)/8;
     } else if (options.align == "right") {
@@ -140,7 +145,6 @@ class StoopidOverlay {
       throw("Error: Align should be 'center', 'left', or 'right'.")
     }
 
-    console.log(offset);
     this.container.style.marginLeft = offset + "%";
 
     // Add padding
@@ -151,8 +155,9 @@ class StoopidOverlay {
     that.close.style.top = topoff + "%";
 
     // Color and size of close
-    that.close.style.left =  offset + pad + width + "%";
+    that.close.style.left =  offset +  width + "%";
     that.close.style.padding = "20px";
+    console.log(that.close.clientWidth);
     that.close.style.zIndex = "100";
     that.close.style.backgroundColor = options.closeBackground;
     // Opacity of close button
